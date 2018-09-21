@@ -1,0 +1,27 @@
+<table class="table table-triped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>Current Price</th>
+    <th>
+      <% if @user == current_user %>
+      Action
+      <% end %>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+
+    <% @user_stocks.each do |user_stock| %>
+    <tr id="stock_<%= user_stock.id%>">
+    <td><%= user_stock.name %></td>
+      <td><%= user_stock.ticker %></td>
+      <td><%= user_stock.last_price %></td>
+      <td><%= link_to 'delete', user_stock_path(user_stock), method: :delete, data: {confirm: "R U sure?"}, class: "btn btn-xs btn-danger", remote: true %></td>
+
+    </tr>
+
+  <% end %>
+  </tbody>
+</table>
